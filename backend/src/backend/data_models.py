@@ -1,32 +1,32 @@
+from dotenv import load_dotenv
 from lancedb.embeddings import get_registry
 from lancedb.pydantic import LanceModel, Vector
 from pydantic import BaseModel, Field
-from dotenv import load_dotenv
-
 
 load_dotenv()
 
 
 # embedding model here:
-embedding_model = ""
+embedding_model = get_registry().get("cohere").create(name="embed-multilingual-v3.0")
 
 
 # Class Paragraf is used to create the vector embeddings
 class Paragraph(LanceModel):
     doc_id: str
     title: str
-    paragraf_nr: str
+    paragraph_nr: str
     law: str
     content: str = embedding_model.SourceField()
-    embedding: Vector(embedding_model.ndims()
-                      ) = embedding_model.VectorField()  # type: ignore
+    embedding: Vector(embedding_model.ndims()) = embedding_model.VectorField()  # type: ignore
+
 
 # BaseModel class for prompt
 
 
 class Prompt(BaseModel):
     prompt: str = Field(
-        description="prompt from user. If the prompt is empty consider it as missing.")
+        description="prompt from user. If the prompt is empty consider it as missing."
+    )
 
 
 # response from the RAG
@@ -34,10 +34,11 @@ class Prompt(BaseModel):
 class RagResponse(BaseModel):
     filename: str = Field("filename of the retrieved file.")
     filepath: str = Field("filepath to the retrieved file")
-    paragraf_nr: str = Field(
-        description="Number of the paragraf from the retrieved file")
+    paragraph_nr: str = Field(
+        description="Number of the paragraph from the retrieved file"
+    )
     law_nr: str = Field(description="law number in this format 'Lag()")
-    title: str = Field(
-        description="Title of the paragraf based on the retrieved file")
+    title: str = Field(description="Title of the paragraph based on the retrieved file")
     answer: str = Field(
-        description="answer based on the retrieved file, if the law is exchanged within the future mention both laws and when they start or ceases to apply (by date)")
+        description="answer based on the retrieved file, if the law is exchanged within the future mention both laws and when they start or ceases to apply (by date)"
+    )
