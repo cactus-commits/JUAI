@@ -316,4 +316,5 @@ I sådan verksamhet ska avdrag göras även för något av de fem föregående b
 
 Avdrag får dock inte göras med högre belopp än vad som återstår av intäkterna efter avdrag för beskattningsårets kostnader. _Lag (2007:1419)_.
 
+## AVD. V INKOMSTSLAGET NÄRINGSVERKSAMHET
 
