@@ -12,7 +12,7 @@ embedding_model = ""
 
 
 # Class Paragraf is used to create the vector embeddings
-class Paragraf(LanceModel):
+class Paragraph(LanceModel):
     doc_id: str
     title: str
     paragraf_nr: str
