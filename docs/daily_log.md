@@ -59,8 +59,14 @@ FIRECRAWL_API_KEY=
     - setup_vector_db: skapar tabellen "paragraphs" enligt Paragraph
     - ingest_paragraphs: lägger in paragrafer i tabellen
 
+##### Scraping:
+- Testade crawl först men valde att scrapa hela sidan för att sedan plocka ut kapitel 12
+- Se crawl/scrape_skatteverket.ipynb
+- Datan sparades ned i crawl/data/raw
+
 #### Information: - vilken fil du jobbat i - var finns ytterligare information - ex mapp/fil
 
 - Se issue 09 i backlog för ytterligare information om does and don't s 
-
 - Skapade data_models.py i backend/src/backend 
+- crawl/data/raw
+- crawl/scrape_skatteverket.py
