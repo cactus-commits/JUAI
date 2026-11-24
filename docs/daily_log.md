@@ -40,3 +40,19 @@ NVIDIA_API_KEY=
 LOGFIRE_TOKEN=
 FIRECRAWL_API_KEY=
 ```
+
+### 24/11 - Scraping, Structure and LanceDB
+
+#### Medverkande: Miranda, Lisa, Rickard 
+
+#### Beskrivning:
+- kollat skatteverket.se/robots.txt
+- Skapade data_models.py 
+    - LanceModel för vector embedding
+    - Basemodel för svar från RAG, samt prompt 
+
+#### Information: - vilken fil du jobbat i - var finns ytterligare information - ex mapp/fil
+
+- Se issue 09 i backlog för ytterligare information om does and don't s 
+
+- Skapade data_models.py i backend/src/backend 
