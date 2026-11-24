@@ -8,6 +8,8 @@
 #### Beskrivning:
 
 #### Information: - vilken fil du jobbat i - var finns ytterligare information - ex mapp/fil
+
+#### Todo: (om det är något särskilt som ska göras härnäst. Antingen att ta vid/granska eller göra för att vara up to date)
 ```
 --- 
 
