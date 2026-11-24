@@ -61,12 +61,20 @@ FIRECRAWL_API_KEY=
 
 ##### Scraping:
 - Testade crawl först men valde att scrapa hela sidan för att sedan plocka ut kapitel 12
-- Se crawl/scrape_skatteverket.ipynb
-- Datan sparades ned i crawl/data/raw
+- Se backend/src/scrape/scrape_skatteverket.ipynb
+- Datan sparades ned i backend/src/scrape/data/raw
 
 #### Information: - vilken fil du jobbat i - var finns ytterligare information - ex mapp/fil
 
 - Se issue 09 i backlog för ytterligare information om does and don't s 
 - Skapade data_models.py i backend/src/backend 
-- crawl/data/raw
-- crawl/scrape_skatteverket.py
+- backend/src/scrape/data/raw
+- backend/src/scrape/scrape_skatteverket.ipynb
+- Vi har testat ingestion.py med test-paragrafer 
+
+
+#### ToDo: 
+- Bara kap 12 eller hela lagen? Båda finns som data i markdown 
+- I uppgiften står det "en lag" inte ett kap - kolla med Kokchun 
+- Se hur vi ska chunka upp i kap/paragrafer för att få ut korrekt format 
+- Behöver vi ha separata filer för kap/paragraferna ?

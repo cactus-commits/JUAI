@@ -1,6 +1,8 @@
 import lancedb
-from backend.constants import VECTOR_DB_PATH
+from backend.constants import VECTOR_DB_PATH, DATA_PATH
 from backend.data_models import Paragraph
+import time
+
 
 TABLE_NAME = "paragraphs"
 
