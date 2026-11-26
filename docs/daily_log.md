@@ -72,6 +72,32 @@ FIRECRAWL_API_KEY=
 - backend/src/scrape/scrape_skatteverket.ipynb
 - Vi har testat ingestion.py med test-paragrafer 
 
+---
+
+
+### 25/11 - Test for chunking in paragraphs 
+
+#### Medverkande: Miranda 
+
+#### Beskrivning: 
+- Delade upp markdown-filen kap12.md paragraf för paragraf 
+- testade embedding model och lancemodel för att testa vector embedding på datan 
+- göra rader av paragraferna för och dela upp dem (splitta vid ny paragraf)
+- testade med lancedb connection 
+- skapade table 
+- adderade raderna
+- testade att söka i vector databasen
+
+#### Information: - vilken fil du jobbat i - var finns ytterligare information - ex mapp/fil
+- i chunk_test.ipynb 
+
+#### Todo: (om det är något särskilt som ska göras härnäst. Antingen att ta vid/granska eller göra för att vara up to date)
+
+- uppdatera chunking i ingestion.py och paragraph(lancemodel), Ragresponse i models.py 
+
+--- 
+
+
 ### 26/11 - embed_text i Paragraph
 
 #### Medverkande: Alex
