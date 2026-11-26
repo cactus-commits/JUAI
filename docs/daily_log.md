@@ -72,9 +72,25 @@ FIRECRAWL_API_KEY=
 - backend/src/scrape/scrape_skatteverket.ipynb
 - Vi har testat ingestion.py med test-paragrafer 
 
+### 26/11 - embed_text i Paragraph
+
+#### Medverkande: Alex
+
+#### Beskrivning:
+- Lagt till fältet `embed_text` i `Paragraph` (data_models.py)
+- Flyttat `SourceField()` från `content` till `embed_text`. Nu är det `embed_text` som blir vektor, inte bara `content`
+- `embed_text` = rubrik + paragrafnummer + paragraftext, t.ex. "Maximibelopp och normalbelopp\n11 § Maximibeloppet är..."
+- `content` är kvar som ren paragraftext, den visar vi för användaren
+- Uppdaterat testparagraferna i ingestion.py (1 § och 26 §) med `embed_text`
+- Testat ingestion.py, 26 § kommer som bästa träff på "får jag dra av resor till jobbet?"
+
+#### Information:
+- backend/src/backend/data_models.py
+- backend/src/ingestion.py
+- Varför: många paragrafer säger inte själva vad de handlar om (ex. 12 kap. 11 §). Ämnet står i rubriken, och den var inte med i vektorn innan
+
 
 #### ToDo: 
-- Bara kap 12 eller hela lagen? Båda finns som data i markdown 
-- I uppgiften står det "en lag" inte ett kap - kolla med Kokchun 
-- Se hur vi ska chunka upp i kap/paragrafer för att få ut korrekt format 
-- Behöver vi ha separata filer för kap/paragraferna ?
+- Den som skriver parsern för kap12.md måste fylla i `embed_text` för varje paragraf: f"{title}\n{paragraph_nr} § {content}"
+- Alla rader måste ha `embed_text`, annars kraschar table.add() (fältet får inte vara tomt)
+- Nästa steg: parser som gör om kap12.md till paragrafer
