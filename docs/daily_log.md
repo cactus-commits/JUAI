@@ -135,3 +135,42 @@ FIRECRAWL_API_KEY=
 - Den som skriver parsern för kap12.md måste fylla i `embed_text` för varje paragraf: f"{title}\n{paragraph_nr} § {content}"
 - Alla rader måste ha `embed_text`, annars kraschar table.add() (fältet får inte vara tomt)
 - Nästa steg: parser som gör om kap12.md till paragrafer
+
+
+### 26 / 11 - Setup agent, fastapi och connection till logfire och lancedb 
+
+#### Medverkande: Miranda 
+
+#### Beskrivning:
+**api.py**
+- Setup FastAPI 
+- Initialize logfire till pydantic_ai och fastapi(app)
+- Skapat endpoint för fråga i fastapi 
+- testat den i Swagger ui 
+
+**rag.py**
+- setup agent med nvidia_model 
+- connection till lancedb 
+- system_prompt - nu är den hårdkodad (V1)
+- skapa agenten för rag med output baserat på ragresponse - modellen för struktur 
+
+#### Information: - vilken fil du jobbat i - var finns ytterligare information - ex mapp/fil
+- rag.py (agenten och system-prompt)
+- Swagger UI:
+    -  i backend/src/backend 
+    - kör kommando:
+        ```bash
+         uv run uvicorn api:app --reload
+        ```
+#### Todo: (om det är något särskilt som ska göras härnäst. Antingen att ta vid/granska eller göra för att vara up to date)
+
+- system_prompt 
+    - testa olika prompts i logfire 
+    - hämta dem på rätt sätt och inte hårdkodat som nu 
+    - gör detta med hjälp av lable e.g. latest
+
+- Testa agenten mot databasen
+    - när databasen är uppsatt i lancedb testa agenten mot denna 
+
+- tool 
+    - om vi vill ha någon tool för agenten ska denna ligga i rag.py 
