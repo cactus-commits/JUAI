@@ -197,3 +197,25 @@ FIRECRAWL_API_KEY=
 
 #### Todo:
 - göra en tool för rag så att den kan hitta databasen
+
+
+### 26 / 11 - agent tool plain 
+
+#### Medverkande: Miranda
+#### Beskrivning: 
+- tog bort   abstained: bool = Field i data_models då det inte fungerade 
+- skapade ett tool_plain för agenten (detta behövs för att kunna få ett svar då agenten måste veta när den ska användas)
+- skrev ut svaret utan embeddings 
+- satte default om ingen paragraph hittas 
+- testade i swagger UI 
+
+#### Information: 
+- rag.py 
+- data_models.py 
+
+#### Todo:
+- se över svaret i tool om det är bra nog 
+
+```bash
+uv run ingestion.py # behövs för att få in data i lancedb 
+```

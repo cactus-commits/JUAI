@@ -7,15 +7,18 @@ load_dotenv()
 
 
 # embedding model here:
-embedding_model = get_registry().get("cohere").create(name="embed-multilingual-v3.0")
+embedding_model = get_registry().get(
+    "cohere").create(name="embed-multilingual-v3.0")
 
 
 # Class Paragraf is used to create the vector embeddings
 class Paragraph(LanceModel):
     chunk_id: str
     paragraph_nr: str
-    content: str = embedding_model.SourceField() # content and embed_text contains same
-    embedding: Vector(embedding_model.ndims()) = embedding_model.VectorField()  # type: ignore
+    # content and embed_text contains same
+    content: str = embedding_model.SourceField()
+    embedding: Vector(embedding_model.ndims()
+                      ) = embedding_model.VectorField()  # type: ignore
 
 
 # BaseModel class for prompt
@@ -33,10 +36,12 @@ class RagResponse(BaseModel):
     )
     # law_nr: str = Field(description="law number in this format 'Lag()") - only one law
     title: str = Field(description="Heading of that paragraph, copied from the retrieved paragraphs."
-    )
+                       )
     answer: str = Field(
         description="Answer in Swedish, based only on the retrieved paragraphs."
     )
-    abstained: bool = Field(
-    description="True if the answer cannot be found in the retrieved paragraphs."
-)
+
+# Detta dunkar inte att ha med för modellen verkar det som - ta bort??
+#     abstained: bool = Field(
+#     description="True if the answer cannot be found in the retrieved paragraphs."
+# )

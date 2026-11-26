@@ -24,6 +24,7 @@ system_prompt = (
     "Avsluta alltid med att ange vilka paragrafer du har använt som källa, i formatet 'Källa: 12 kap. X §' (flera paragrafer separeras med kommatecken). "
     "Citera lagtexten ordagrant endast när exakt ordalydelse är viktig, annars återge innehållet med egna ord. "
     "Svara på svenska."
+    "Använd alltid verktyget paragraph_search innan du svarar."
 )
 
 
@@ -34,3 +35,25 @@ rag_agent = Agent(
     system_prompt=system_prompt,
     output_type=RagResponse  # RagResponse BaseModel is used for structured output
 )
+
+# Tool for paragaph search
+
+
+# from pydantic doumentation
+# https://pydantic.dev/docs/ai/tools-toolsets/tools/
+@rag_agent.tool_plain
+def paragraph_search(query: str) -> str:
+    """Search 12 kap. inkomstskattelagen for relevant paragraphs.
+
+    Args:
+        query: Short Swedish search phrase, e.g. 'avdrag för bil i tjänsten'.
+    """
+    results = vector_db["paragraphs"].search(query).limit(5).to_list()
+
+    if not results:
+        return "Inga relevanta paragrafer hittades."
+
+    return "\n\n".join(
+        f"Paragraf: {r['paragraph_nr']}\nInnehåll: {r['content']}"
+        for r in results
+    )
