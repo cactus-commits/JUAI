@@ -13,6 +13,7 @@ model = nvidia_model()
 
 # Define system_prompt
 # Move this later on to logfire and Prompt handling / testing
+# This prompt was writtern with LLM
 system_prompt = (
     "Du är en expert på inkomstskattelagen (1999:1229) och specialiserad på kapitel 12. "
     "Du hjälper användaren att hitta och förstå vad lagtexten säger. "
