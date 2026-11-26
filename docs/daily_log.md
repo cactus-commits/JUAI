@@ -89,8 +89,24 @@ FIRECRAWL_API_KEY=
 - backend/src/ingestion.py
 - Varför: många paragrafer säger inte själva vad de handlar om (ex. 12 kap. 11 §). Ämnet står i rubriken, och den var inte med i vektorn innan
 
+### 26/11 - Uppdaterat RagResponse
+
+#### Medverkande: Alex
+
+#### Beskrivning:
+- Lagt till `abstained: bool` i `RagResponse`, så att systemet kan säga att svaret inte finns i lagtexten
+- Skrivit om descriptions (engelska):
+    - "retrieved file" → "retrieved paragraphs", eftersom datan ligger i LanceDB och inte i filer
+    - `answer` ska vara på svenska och bara bygga på de hämtade paragraferna
+    - `paragraph_nr` har exempel på format ('26', '6 a') och måste vara en av de hämtade paragraferna
+- Kommenterat bort `law_nr`, eftersom det alltid är samma lag 
+-  Kommenterat bort `filename` och `filepath`. Hos oss är källan en paragraf, inte en egen fil, så `paragraph_nr` och `title` räcker
+
+#### Information:
+- backend/src/backend/data_models.py
 
 #### ToDo: 
+- - Backend-koden som använder `RagResponse` ska hantera `abstained = True` (visa "Står inte i lagtexten, fråga Skatteverket")
 - Den som skriver parsern för kap12.md måste fylla i `embed_text` för varje paragraf: f"{title}\n{paragraph_nr} § {content}"
 - Alla rader måste ha `embed_text`, annars kraschar table.add() (fältet får inte vara tomt)
 - Nästa steg: parser som gör om kap12.md till paragrafer
