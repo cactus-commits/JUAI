@@ -174,3 +174,26 @@ FIRECRAWL_API_KEY=
 
 - tool 
     - om vi vill ha någon tool för agenten ska denna ligga i rag.py 
+
+---
+
+### 26/11 - Parsing/chunking
+
+#### Medverkande: Lisa
+
+#### Beskrivning: 
+- skapat parsing.py:
+    - i backend som chunkar upp och parsar markdown filen med kap 12
+    - delar upp texten så att varje rubrik hamnar ovanför paragrafen
+- ändrat i data_models.py och ingestion.py
+    - tog bort title, ebmed_text (ger samma som content)
+    - lade till och ändrade i ingestion så att vi får med det chunkade texten
+
+
+#### Information: 
+- data_models.py
+- ingestions.py
+- pasring.py
+
+#### Todo:
+- göra en tool för rag så att den kan hitta databasen
