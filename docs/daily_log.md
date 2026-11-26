@@ -106,7 +106,6 @@ FIRECRAWL_API_KEY=
 - backend/src/backend/data_models.py
 
 #### ToDo: 
-- - Backend-koden som använder `RagResponse` ska hantera `abstained = True` (visa "Står inte i lagtexten, fråga Skatteverket")
 - Den som skriver parsern för kap12.md måste fylla i `embed_text` för varje paragraf: f"{title}\n{paragraph_nr} § {content}"
 - Alla rader måste ha `embed_text`, annars kraschar table.add() (fältet får inte vara tomt)
 - Nästa steg: parser som gör om kap12.md till paragrafer
