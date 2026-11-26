@@ -9,17 +9,19 @@ TABLE_NAME = "paragraphs"
 TEST_PARAGRAPHS = [
     {
         "doc_id": "il_12_1",
-        "title": "Testtitel",
+        "title": "Huvudregel",
         "paragraph_nr": "1",
         "law": "Inkomstskattelag (1999:1229)",
         "content": "Testtext om kostnader för att få inkomster i tjänst.",
+        "embed_text": "Huvudregel\n1 § Testtext om kostnader för att få inkomster i tjänst.",
     },
     {
         "doc_id": "il_12_26",
-        "title": "Testtitel",
+        "title": "Resor mellan bostaden och arbetsplatsen",
         "paragraph_nr": "26",
         "law": "Inkomstskattelag (1999:1229)",
         "content": "Testtext om resor mellan bostaden och arbetsplatsen.",
+        "embed_text": "Resor mellan bostaden och arbetsplatsen\n26 § Testtext om resor mellan bostaden och arbetsplatsen.",
     },
 ]
 

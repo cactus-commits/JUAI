@@ -16,7 +16,8 @@ class Paragraph(LanceModel):
     title: str
     paragraph_nr: str
     law: str
-    content: str = embedding_model.SourceField()
+    content: str 
+    embed_text: str = embedding_model.SourceField()
     embedding: Vector(embedding_model.ndims()) = embedding_model.VectorField()  # type: ignore
 
 
@@ -32,13 +33,18 @@ class Prompt(BaseModel):
 # response from the RAG
 # - maybe include title and paragraf nr in the answer instead but test it?
 class RagResponse(BaseModel):
-    filename: str = Field("filename of the retrieved file.")
-    filepath: str = Field("filepath to the retrieved file")
+    #filename: str = Field("filename of the retrieved file.")
+    #filepath: str = Field("filepath to the retrieved file")
     paragraph_nr: str = Field(
-        description="Number of the paragraph from the retrieved file"
+        description="Number of the paragraph the answer is based on, e.g. '26' or '6 a'. Must be one of the retrieved paragraphs."
     )
-    law_nr: str = Field(description="law number in this format 'Lag()")
-    title: str = Field(description="Title of the paragraph based on the retrieved file")
+
+    # law_nr: str = Field(description="law number in this format 'Lag()") - only one law
+    title: str = Field(description="Heading of that paragraph, copied from the retrieved paragraphs."
+    )
     answer: str = Field(
-        description="answer based on the retrieved file, if the law is exchanged within the future mention both laws and when they start or ceases to apply (by date)"
+        description="Answer in Swedish, based only on the retrieved paragraphs."
     )
+    abstained: bool = Field(
+    description="True if the answer cannot be found in the retrieved paragraphs."
+)

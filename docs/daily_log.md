@@ -72,9 +72,40 @@ FIRECRAWL_API_KEY=
 - backend/src/scrape/scrape_skatteverket.ipynb
 - Vi har testat ingestion.py med test-paragrafer 
 
+### 26/11 - embed_text i Paragraph
+
+#### Medverkande: Alex
+
+#### Beskrivning:
+- Lagt till fältet `embed_text` i `Paragraph` (data_models.py)
+- Flyttat `SourceField()` från `content` till `embed_text`. Nu är det `embed_text` som blir vektor, inte bara `content`
+- `embed_text` = rubrik + paragrafnummer + paragraftext, t.ex. "Maximibelopp och normalbelopp\n11 § Maximibeloppet är..."
+- `content` är kvar som ren paragraftext, den visar vi för användaren
+- Uppdaterat testparagraferna i ingestion.py (1 § och 26 §) med `embed_text`
+- Testat ingestion.py, 26 § kommer som bästa träff på "får jag dra av resor till jobbet?"
+
+#### Information:
+- backend/src/backend/data_models.py
+- backend/src/ingestion.py
+- Varför: många paragrafer säger inte själva vad de handlar om (ex. 12 kap. 11 §). Ämnet står i rubriken, och den var inte med i vektorn innan
+
+### 26/11 - Uppdaterat RagResponse
+
+#### Medverkande: Alex
+
+#### Beskrivning:
+- Lagt till `abstained: bool` i `RagResponse`, så att systemet kan säga att svaret inte finns i lagtexten
+- Skrivit om descriptions (engelska):
+    - "retrieved file" → "retrieved paragraphs", eftersom datan ligger i LanceDB och inte i filer
+    - `answer` ska vara på svenska och bara bygga på de hämtade paragraferna
+    - `paragraph_nr` har exempel på format ('26', '6 a') och måste vara en av de hämtade paragraferna
+- Kommenterat bort `law_nr`, eftersom det alltid är samma lag 
+-  Kommenterat bort `filename` och `filepath`. Hos oss är källan en paragraf, inte en egen fil, så `paragraph_nr` och `title` räcker
+
+#### Information:
+- backend/src/backend/data_models.py
 
 #### ToDo: 
-- Bara kap 12 eller hela lagen? Båda finns som data i markdown 
-- I uppgiften står det "en lag" inte ett kap - kolla med Kokchun 
-- Se hur vi ska chunka upp i kap/paragrafer för att få ut korrekt format 
-- Behöver vi ha separata filer för kap/paragraferna ?
+- Den som skriver parsern för kap12.md måste fylla i `embed_text` för varje paragraf: f"{title}\n{paragraph_nr} § {content}"
+- Alla rader måste ha `embed_text`, annars kraschar table.add() (fältet får inte vara tomt)
+- Nästa steg: parser som gör om kap12.md till paragrafer

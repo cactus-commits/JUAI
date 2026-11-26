@@ -222,3 +222,13 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 backend/src/vector_db/
+
+# MAC
+.DS_Store
+
+# Claude
+CLAUDE.md
+
+# Private
+alex_notes
+
