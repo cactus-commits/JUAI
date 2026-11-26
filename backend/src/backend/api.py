@@ -19,7 +19,7 @@ logfire.instrument_fastapi(app)
 
 
 # Endpoint for JUAI - bot
-@app.post("JUAI/ask")
+@app.post("/JUAI/ask")
 async def rag_documentation(query: Prompt):
     # The user query is the prompt that the agent runs
     result = await rag_agent.run(query.prompt)
