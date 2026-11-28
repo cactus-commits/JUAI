@@ -242,9 +242,11 @@ uv run ingestion.py # behövs för att få in data i lancedb
     - Tagit bort ur system_prompt: "Avsluta alltid med att ange vilka paragrafer du har använt som källa..." eftersom källan då kom med två gånger, en gång i svaret och en gång under rubriken Källa i frontenden
 
 - app.py (frontend)
-    - Enkel Streamlit-app utifrån kursens lektion RAGbit (https://github.com/kokchun/ragbit): fråga, svar och källa (paragraf + rubrik)
+    - Chattgränssnitt i Streamlit med st.chat_input och historik i st.session_state (#26)
+        - Mall: lektion 05 (JokeBot) för chatten, RAGbit (https://github.com/kokchun/ragbit) för anropet till backend
+        - Varje svar visar källa längst ner: paragraf + rubrik
     - Visar felmeddelande om backend inte svarar med 200
-    - Lagt till requests i frontend/pyproject.toml (behövs för Docker senare)".
+    - Lagt till requests i frontend/pyproject.toml (behövs för Docker senare)
 
 
 #### Information:
@@ -256,6 +258,5 @@ uv run ingestion.py # behövs för att få in data i lancedb
 - Varför system_prompt: frågan "Får jag dra av resor till jobbet?" gav "2,50 kronor per mil", men 27 § säger "2 kronor och 50 öre för varje kilometer". Det blir tio gånger fel
 
 #### Todo:
-- Chattgränssnitt med st.chat_input och historik (#26)
 - Felhantering, timeouts och rate limiting i api.py (#23)
 - Frontend behöver requests: kör uv sync --all-packages
