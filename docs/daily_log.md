@@ -234,5 +234,10 @@ uv run ingestion.py # behövs för att få in data i lancedb
     - De två versionerna av 6 a § (upphör/träder i kraft 2027-01-01) får olika id: ` och il_12_6a_ny
     - Kört ingestion.py igen så databasen har de rättade chunkarna
 
+- Ändrade description av title i RagResponse (data_models.py) för att säkerställa att modellen kopierar rubriken från första raden i den hämtade paragrafen ("12 kap. <rubrik>") i stället för att hitta på en 
+
+- Adderade meningen: "Återge belopp, procentsatser och enheter exakt som i lagtexten, räkna aldrig om dem. " i system_prompt (rag.py)
+
 #### Information:
-- Varför: rubriken säger ofta vad paragrafen handlar om (ex. 26 § "Arbetsresor"). Med rubriken i fel chunk hittade sökningen fel paragraf
+- Varför: rubriken säger ofta vad paragrafen handlar om (ex. 26 § "Arbetsresor"). Med rubriken i fel chunk hittade sökningen fel 
+- Ställde frågan: "Får jag dra av resor till jobbet?". Svaret sa "2,50 kronor per mil", men 27 § säger "2 kronor och 50 öre för varje kilometer". Det blir tio gånger fel. Därav la jag till meningen i system_prompt.
