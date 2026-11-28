@@ -222,7 +222,7 @@ uv run ingestion.py # behövs för att få in data i lancedb
 
 ---
 
-### 28/11 - Parsing/chunking
+### 28/11 - Parsing/chunking, Streamlit
 
 #### Medverkande: Rickard
 
@@ -234,10 +234,28 @@ uv run ingestion.py # behövs för att få in data i lancedb
     - De två versionerna av 6 a § (upphör/träder i kraft 2027-01-01) får olika id: ` och il_12_6a_ny
     - Kört ingestion.py igen så databasen har de rättade chunkarna
 
-- Ändrade description av title i RagResponse (data_models.py) för att säkerställa att modellen kopierar rubriken från första raden i den hämtade paragrafen ("12 kap. <rubrik>") i stället för att hitta på en 
+- Ändrade description av title i RagResponse (data_models.py)
+    - För att säkerställa att modellen kopierar rubriken från första raden i den hämtade paragrafen ("12 kap. <rubrik>") i stället för att hitta på en egen 
 
-- Adderade meningen: "Återge belopp, procentsatser och enheter exakt som i lagtexten, räkna aldrig om dem. " i system_prompt (rag.py)
+- rag.py
+    - Lagt till i system_prompt: "Återge belopp, procentsatser och enheter exakt som i lagtexten, räkna aldrig om dem."
+    - Tagit bort ur system_prompt: "Avsluta alltid med att ange vilka paragrafer du har använt som källa..." eftersom källan då kom med två gånger, en gång i svaret och en gång under rubriken Källa i frontenden
+
+- app.py (frontend)
+    - Enkel Streamlit-app utifrån kursens lektion RAGbit (https://github.com/kokchun/ragbit): fråga, svar och källa (paragraf + rubrik)
+    - Visar felmeddelande om backend inte svarar med 200
+    - Lagt till requests i frontend/pyproject.toml (behövs för Docker senare)".
+
 
 #### Information:
-- Varför: rubriken säger ofta vad paragrafen handlar om (ex. 26 § "Arbetsresor"). Med rubriken i fel chunk hittade sökningen fel 
-- Ställde frågan: "Får jag dra av resor till jobbet?". Svaret sa "2,50 kronor per mil", men 27 § säger "2 kronor och 50 öre för varje kilometer". Det blir tio gånger fel. Därav la jag till meningen i system_prompt.
+- backend/src/backend/parsing.py
+- backend/src/backend/data_models.py
+- backend/src/backend/rag.py
+- frontend/src/frontend/app.py
+- Varför parsing: rubriken säger ofta vad paragrafen handlar om (ex. 26 § "Arbetsresor"). Med rubriken i fel chunk hittade sökningen fel paragraf först
+- Varför system_prompt: frågan "Får jag dra av resor till jobbet?" gav "2,50 kronor per mil", men 27 § säger "2 kronor och 50 öre för varje kilometer". Det blir tio gånger fel
+
+#### Todo:
+- Chattgränssnitt med st.chat_input och historik (#26)
+- Felhantering, timeouts och rate limiting i api.py (#23)
+- Frontend behöver requests: kör uv sync --all-packages
