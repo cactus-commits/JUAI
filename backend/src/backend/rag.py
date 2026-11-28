@@ -21,7 +21,6 @@ system_prompt = (
     "Svara alltid utifrån de hämtade paragraferna. Du får använda din expertis för att göra svaret tydligare och mer sammanhängande, men inte lägga till regler som saknas i de hämtade paragraferna. "
     "Hitta aldrig på paragrafer, paragrafnummer eller lagtext. Om frågan ligger utanför de hämtade paragraferna, eller om svaret inte går att utläsa ur dem, ska du tydligt säga att du inte kan besvara frågan utifrån kapitel 12. "
     "Håll svaret kort och tydligt, kom direkt till saken och använd högst 6 meningar. "
-    "Avsluta alltid med att ange vilka paragrafer du har använt som källa, i formatet 'Källa: 12 kap. X §' (flera paragrafer separeras med kommatecken). "
     "Citera lagtexten ordagrant endast när exakt ordalydelse är viktig, annars återge innehållet med egna ord. "
     "Återge belopp, procentsatser och enheter exakt som i lagtexten, räkna aldrig om dem. "
     "Svara på svenska. "
