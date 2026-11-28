@@ -28,15 +28,17 @@ class Prompt(BaseModel):
     )
 
 
-# response from the RAG
-# - maybe include title and paragraf nr in the answer instead but test it?
+# Response from RAG
+# - title is read from the first line of the retrieved content ("12 kap. <rubrik>")
 class RagResponse(BaseModel):
     paragraph_nr: str = Field(
         description="Number of the paragraph the answer is based on, e.g. '26' or '6 a'. Must be one of the retrieved paragraphs."
     )
     # law_nr: str = Field(description="law number in this format 'Lag()") - only one law
-    title: str = Field(description="Heading of that paragraph, copied from the retrieved paragraphs."
-                       )
+    title: str = Field(
+        description="Heading of that paragraph: the text after '12 kap.' on the first line of its retrieved content, e.g. 'Arbetsresor'."
+    )
+                       
     answer: str = Field(
         description="Answer in Swedish, based only on the retrieved paragraphs."
     )
